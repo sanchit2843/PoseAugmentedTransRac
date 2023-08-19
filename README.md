@@ -1,5 +1,5 @@
 ## Introduction
-In this work we extend the original TransRac model by adding a human pose based stream for action recognition. This additional stream builds on top of PoseC3D, which is an architecture for action recognition and takes input a heatmap of human poses. Additionally we utilize MoviNet backbone to reduce computation. We further add additional branch to classify the action. This action classification helps in tuning the sampling rate and helps in solving issue of predicting actions in untrimmed videos. This work was done as a final class project for CMSC733 at University of Maryland and the report is available here.
+This repository extends the original TransRac model by introducing a human pose-based stream for action recognition. The additional stream leverages the PoseC3D architecture, designed for action recognition using heatmaps of human poses as input. To enhance computational efficiency, the MoviNet backbone is incorporated. An extra branch is also introduced for action classification, aiding in dynamically adjusting the sampling rate and addressing issues related to sampling rate in untrimmed videos or live stream. This project was undertaken as the final assignment for CMSC733 at the University of Maryland. The complete report can be accessed here.
 
 ## RepCount Dataset   
 The Homepage of [RepCount Dataset](https://svip-lab.github.io/dataset/RepCount_dataset.html) is available now. 
@@ -12,28 +12,31 @@ Since we utilize human poses in additional stream, these human poses are extract
 
 1. Estimate the human poses for each frame in video and save a numpy array with frames, this numpy will have keys imgs and pose for images and pose heatmaps. 
 
-`
-bash
+```
 cd data_preprocess
 python data_preprocess_merged.py --video_directory <path to all videos> --output_directory <path where jsons will be saved>
-`
+```
 
 Data directory should be in format 
-Parent directory:
-	train
-	test
-	train.csv
-	test.csv
+```
+├── root_directory
+│   ├── train
+│   ├── train.csv
+│   ├── test
+│   ├── test.csv
+```
+
 
 ### Train   
 
 Through experiments we discovered that it is necessary to first train the pose branch to get reasonable improvements, thus skeleton branch is first trained independently, these weights are later fine tuned in final multistream model. 
 1. Train skeleton based model
+
 `
 python pretrain_skeleton.py --root_path <path where dataset exists>
+`
 
 2. Train the final model
-
 
 ` 
 python train.py --root_ath <path where dataset is stored> --pose_checkpoint <path to the final trained model received from previous step>
