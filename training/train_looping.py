@@ -145,7 +145,7 @@ def train_loop(
             pbar = tqdm(trainloader, total=len(trainloader))
             batch_idx = 0
             num_correct = 0
-            num_samples = 0
+            num_samples = 1
             model.train()
 
             for batch_dict in pbar:
@@ -203,11 +203,10 @@ def train_loop(
                         class_prediction, class_label
                     )
                     loss += lambda_classification * loss_classification_value
+                    class_prediction = torch.argmax(class_prediction.detach(), dim=1)
 
-                class_prediction = torch.argmax(class_prediction.detach(), dim=1)
-
-                num_correct += (class_prediction == class_label).sum()
-                num_samples += class_prediction.size(0)
+                    num_correct += (class_prediction == class_label).sum().item()
+                    num_samples += class_prediction.size(0)
                 # calculate MAE or OBO
 
                 gaps = (
@@ -239,7 +238,7 @@ def train_loop(
                         "loss_train": train_loss,
                         "Train MAE": MAE,
                         "Train OBO ": OBO,
-                        "train accuracy": (num_correct / num_samples).item(),
+                        "train accuracy": (num_correct / num_samples),
                     }
                 )
                 if num_classes == None:
@@ -254,7 +253,7 @@ def train_loop(
                     "Train Loss": np.mean(trainLosses),
                     "Train MAE": np.mean(trainMAE),
                     "Train OBO": np.mean(trainOBO),
-                    "Train Accuracy": (num_correct / num_samples).item(),
+                    "Train Accuracy": (num_correct / num_samples),
                 }
             )
 

@@ -235,7 +235,7 @@ class TransferModelMultiStream(nn.Module):
     def forward(self, x, heatmap=None):
         scale = self.scales[0]
         if self.pose:
-            x_pose, _, mid_layer_outputs_pose = self.pose_model(heatmap)
+            x_pose, _, mid_layer_outputs_pose, _ = self.pose_model(x=heatmap)
         x_ = rearrange(x, "b c (f t) h w -> b c f t h w", t=scale)
         x = rearrange(x_, "b c f t h w -> (b f) c t h w")
         # feature extract with video SwinTransformer

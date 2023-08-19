@@ -355,10 +355,10 @@ if __name__ == "__main__":
                 )
             )
     ic(len(task_list))
-    pool = mp.Pool(args.num_worker)
-    pool.starmap(main, task_list)
-    pool.close()
-    pool.join()
-    # for task in task_list:
-    #     print(task[0])
-    #     main(*task)
+    # pool = mp.Pool(args.num_worker)
+    # pool.starmap(main, task_list)
+    # pool.close()
+    # pool.join()
+    for task in task_list:
+        print(task[0])
+        main(*task)

@@ -48,7 +48,7 @@ if __name__ == "__main__":
     NUM_FRAME = 64
     # multi scales(list). we currently support 1,4,8 scale.
     SCALES = [8]
-    num_classes = None  # use this if
+    num_classes = 10  # use this if you want to train with 10 classes in repcount dataset
     train_dataset = MyData(
         root_path,
         train_video_dir,

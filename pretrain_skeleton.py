@@ -54,6 +54,7 @@ if __name__ == "__main__":
         train_label_dir,
         num_frame=NUM_FRAME,
         num_classes=num_classes,
+        pose=True
     )
     valid_dataset = MyData(
         root_path,
@@ -61,6 +62,7 @@ if __name__ == "__main__":
         valid_label_dir,
         num_frame=NUM_FRAME,
         num_classes=num_classes,
+        pose=True
     )
     pose = True
 

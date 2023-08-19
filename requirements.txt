@@ -28,3 +28,4 @@ tensorboardX==2.5
 timm==0.4.12
 tqdm==4.59.0
 einops
+git+https://github.com/lessw2020/Ranger21.git

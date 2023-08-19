@@ -198,7 +198,7 @@ class TransferModelPose(nn.Module):
         )
         self.FC = Prediction(512, 512, 256, 1)  #
 
-    def forward(self, x):
+    def forward(self, heatmap=None, x = None):
         batch_size, c, num_frames, h, w = x.shape
         # scales = [1,4,8]
         # We currently only support 1, 4, 8 flames. If you want to add more scale, you can change the part and don't forget padding.
@@ -249,8 +249,8 @@ class TransferModelPose(nn.Module):
         x = self.FC(x)  # ->[b,f,1]
         x = x.squeeze(2)
         if self.retrain:
-            return x, x_matrix, mid_layers_dict
-        return x, x_matrix, None
+            return x, x_matrix, mid_layers_dict, None
+        return x, x_matrix, None, None
 
 
 if __name__ == "__main__":
