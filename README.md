@@ -44,7 +44,9 @@ python train.py --root_ath <path where dataset is stored> --pose_checkpoint <pat
 
 ### Model Zoo
 ##### RepCount Dataset 
-
+#TODO: 
+Add trained model weights and inference script on video with sampling using classification branch. 
+Add Gifs with results plotted for reference. 
 ## Acknowledgements
 
 ```
