@@ -3,6 +3,8 @@ This repository extends the original TransRac model by introducing a human pose-
 
 ## RepCount Dataset   
 The Homepage of [RepCount Dataset](https://svip-lab.github.io/dataset/RepCount_dataset.html) is available now. 
+
+
 ## Usage  
 ### Install 
 Please refer to [install.md](https://github.com/SvipRepetitionCounting/TransRAC/blob/main/install.md) for installation.
@@ -43,10 +45,17 @@ python train.py --root_ath <path where dataset is stored> --pose_checkpoint <pat
 `    
 
 ### Model Zoo
+
 ##### RepCount Dataset 
+
+### Sample Result:
+
+Results on a random youtube video can be found [here](https://drive.google.com/file/d/1HHIYo1lwVBgye09eTTU_caovlrCuo37_/view?usp=sharing). 
+
+
 #TODO: 
 Add trained model weights and inference script on video with sampling using classification branch. 
-Add Gifs with results plotted for reference. 
+
 ## Acknowledgements
 
 ```
